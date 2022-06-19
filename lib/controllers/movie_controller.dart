@@ -11,9 +11,20 @@ class MovieController {
   }
 
   var movies = ValueNotifier<Movies?>(null);
+  Movies? _cachedMovies;
 
-  fetchMovies() async {
-    await Future.delayed(const Duration(seconds: 2));
+  Future<void> fetchMovies() async {
     movies.value = await _moviesRepository.getMovies();
+    _cachedMovies = movies.value;
+  }
+
+  void onChanged(String value) {
+    var filteredMovies = _cachedMovies!.results
+        .where((e) => e.toString().toLowerCase().contains(value.toLowerCase()))
+        .toList();
+
+    if (filteredMovies.isNotEmpty) {
+      movies.value = movies.value!.copyWith(results: filteredMovies);
+    }
   }
 }
