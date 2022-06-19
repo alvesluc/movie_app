@@ -37,6 +37,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text('Movies', style: theme.headline3),
                         const SizedBox(height: 16),
+                        TextField(onChanged: _controller.onChanged),
+                        const SizedBox(height: 16),
                         CustomListCardWidget(movie: movies.results[i]),
                       ],
                     );
