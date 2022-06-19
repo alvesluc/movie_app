@@ -150,8 +150,8 @@ class Result {
   int id;
   String? mediaType;
   String? originalLanguage;
-  String? originalTitle;
-  String? overview;
+  String originalTitle;
+  String overview;
   double popularity;
   String posterPath;
   DateTime releaseDate;
