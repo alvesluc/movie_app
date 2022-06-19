@@ -153,7 +153,7 @@ class Result {
   String? originalTitle;
   String? overview;
   double popularity;
-  String? posterPath;
+  String posterPath;
   DateTime releaseDate;
   String title;
   bool video;
