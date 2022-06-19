@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/movies_model.dart';
 
+import '../models/movies_model.dart';
 import '../utils/api_utils.dart';
 
 class CustomListCardWidget extends StatelessWidget {
@@ -14,12 +14,25 @@ class CustomListCardWidget extends StatelessWidget {
 
     return Container(
       height: 180,
-      decoration: const BoxDecoration(
-        color: Colors.black54,
-      ),
+      decoration: BoxDecoration(
+          color: Colors.black54, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
-          Image.network(API.image(movie.posterPath)),
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(16),
+              bottomLeft: Radius.circular(16),
+            ),
+            child: Image.network(
+              API.image(movie.posterPath),
+              loadingBuilder: (_, child, progress) {
+                if (progress == null) {
+                  return child;
+                }
+                return const CircularProgressIndicator.adaptive();
+              },
+            ),
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16),
