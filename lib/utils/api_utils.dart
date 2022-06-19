@@ -1,6 +1,6 @@
 class API {
   // REQUEST_MOVIE_LIST
-  static const movieList = 'list/1?page=1';
+  static const moviesList = 'list/1?page=1';
 
   // REQUEST_IMG
   static String image(String image) {
