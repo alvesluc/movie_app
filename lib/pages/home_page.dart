@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/movie_controller.dart';
 import '../models/movies_model.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             }
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: Lottie.asset('movie_theatre.json'));
           },
         ),
       ),
