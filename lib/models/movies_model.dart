@@ -63,6 +63,29 @@ class Movies {
         totalResults: json["total_results"],
       );
 
+  Map<String?, dynamic> toJson() => {
+        "average_rating": averageRating,
+        "backdrop_path": backdropPath,
+        "comments":
+            Map.from(comments).map((k, v) => MapEntry<String?, dynamic>(k, v)),
+        "description": description,
+        "id": id,
+        "iso_3166_1": iso31661,
+        "iso_639_1": iso6391,
+        "name": name,
+        "object_ids":
+            Map.from(objectIds).map((k, v) => MapEntry<String?, dynamic>(k, v)),
+        "page": page,
+        "poster_path": posterPath,
+        "public": public,
+        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+        "revenue": revenue,
+        "runtime": runtime,
+        "sort_by": sortBy,
+        "total_pages": totalPages,
+        "total_results": totalResults,
+      };
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -210,6 +233,24 @@ class Result {
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
       );
+
+  Map<String?, dynamic> toJson() => {
+        "adult": adult,
+        "backdrop_path": backdropPath,
+        "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
+        "id": id,
+        "media_type": mediaType,
+        "original_language": originalLanguage,
+        "original_title": originalTitle,
+        "overview": overview,
+        "popularity": popularity,
+        "poster_path": posterPath,
+        "release_date": releaseDate.toIso8601String(),
+        "title": title,
+        "video": video,
+        "vote_average": voteAverage,
+        "vote_count": voteCount,
+      };
 
   @override
   bool operator ==(Object other) {
