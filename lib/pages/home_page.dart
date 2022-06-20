@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../controllers/movie_controller.dart';
+import '../decorators/movies_cache_repository_decorator.dart';
 import '../models/movies_model.dart';
 import '../repositories/movie_repository_imp.dart';
 import '../services/dio_service_imp.dart';
@@ -15,7 +16,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _controller = MovieController(MoviesRepositoryImp(DioServiceImp()));
+  final _controller = MovieController(
+    MoviesCacheRepositoryDecorator(
+      MoviesRepositoryImp(
+        DioServiceImp(),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,13 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text('Movies', style: theme.headline3),
                         const SizedBox(height: 16),
-                        TextField(onChanged: _controller.onChanged),
+                        TextField(
+                          onChanged: _controller.onChanged,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            suffixIcon: Icon(Icons.search),
+                          ),
+                        ),
                         const SizedBox(height: 16),
                         CustomListCardWidget(movie: movies.results[i]),
                       ],
