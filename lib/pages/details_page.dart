@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/movies_model.dart';
+import '../models/result_model.dart';
 import '../utils/api_utils.dart';
 
 class DetailsPage extends StatelessWidget {

@@ -4,20 +4,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/movies_model.dart';
 import '../repositories/movies_repository.dart';
-import 'movies_repository_decorator.dart';
 
-class MoviesCacheRepositoryDecorator extends MoviesRepositoryDecorator {
-  MoviesCacheRepositoryDecorator(MoviesRepository moviesRepository)
-      : super(moviesRepository);
+class MoviesCacheRepositoryDecorator implements MoviesRepository {
+  final MoviesRepository _moviesRepository;
+
+  MoviesCacheRepositoryDecorator(this._moviesRepository);
 
   @override
   Future<Movies> getMovies() async {
     try {
-      final movies = await super.getMovies();
+      final movies = await _moviesRepository.getMovies();
       _saveInCache(movies);
       return movies;
     } catch (e) {
-     return await _getFromCache();
+      return await _getFromCache();
     }
   }
 
